@@ -26,6 +26,15 @@ app.post("/Product", async (req, res) => {
     }
 });
 
+app.get("/removeProduct", async (req, res) => {
+    try {
+   await InventoryModel.deleteOne({},{"productId":req.query.productId})
+    res.status(200).send('Successfully deleted')
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 
 
 app.listen(8080, () => { console.log('server started on http://localhost:8080') })
